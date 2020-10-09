@@ -25,11 +25,6 @@ let &l:define = '^\.\(de\|nr\|ds\)\s*'
 " common suffixes
 setlocal suffixesadd+=.ms,.mom,.mm,.tr,.tmac,.macros,.mac,
 
-" TODO: make this optional <09-10-20 Gavin Jaeger-Freeborn>
-setlocal tw=72
-setlocal fo+=l
-
-
 " TODO: clean up formatting <09-10-20 Gavin Jaeger-Freeborn>
 " TODO: add pic warnings  <09-10-20 Gavin Jaeger-Freeborn>
 " Handle all kinds for tracebacks
@@ -47,19 +42,14 @@ setlocal commentstring=\\\"%s
 " let nroff_space_errors = 1
 " imap <buffer> <c-x><c-o> <c-r>=Groffcomplete()<CR>
 
-" TODO: mention in documentation  <09-10-20 Gavin Jaeger-Freeborn>
-" let b:preprocs_as_sections = 1
-" let b:nroff_is_groff = 1
 
 " TODO: allow this to be set and automated <09-10-20 Gavin Jaeger-Freeborn>
 " add tmac files to path
-setlocal path+=,/usr/share/groff/current/tmac
-setlocal tags+=/usr/share/groff/current/tmac/.tags
-
-" make this optional
-set complete+=t
-set complete+=i
-set foldmethod=marker
+if isdirectory('/usr/share/groff/current/tmac')
+	setlocal path+=,/usr/share/groff/current/tmac
+	setlocal tags+=/usr/share/groff/current/tmac/.tags
+	setlocal tags+=/usr/share/groff/current/tmac/tags
+endif
 
 " TODO add to documentation
 " TODO: support for mom and other macros <09-10-20 Gavin Jaeger-Freeborn>
@@ -1296,15 +1286,6 @@ function! GroffMan() " {{{
 	Man 7 groff
 endfunction " }}}
 
-" TODO: move to local <09-10-20 Gavin Jaeger-Freeborn>
-inoreabbrev <buffer> linup lineup
-inoreabbrev <buffer> abvoe above
-
-" make optional
-inoremap <buffer> T{<CR> T{<CR>T}<c-o><s-o>
-imap <buffer> \{\<CR> \{\<CR>.\}<c-o><s-o>
-nmap <buffer> <leader><space> :vimgrep! /\C\(\.XN\\|HEADING\)\zs.*\ze/ %<CR>copen<CR>
-
 " surround {{{1 
 " TODO mention in docs
 " prevent indenting anything
@@ -1317,7 +1298,7 @@ let b:surround_75 = ".KS\r.KE"
 " 1}}} "surround
 
 
-" TODO: make optional and include fallback <09-10-20 Gavin Jaeger-Freeborn>
+" TODO: Add options for automatic compilation
 " Automatically compile groff
 
 " augroup AUTOCOMP
@@ -1328,5 +1309,6 @@ let b:surround_75 = ".KS\r.KE"
 " 		echo 'busy'
 " 	endtry
 " augroup END
-let b:autocompile = 1
+" let b:autocompile = 1
+
 " vim:foldmethod=marker:foldlevel=0
