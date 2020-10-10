@@ -1298,14 +1298,4 @@ let b:surround_75 = ".KS\r.KE"
 " TODO: Add options for automatic compilation
 " Automatically compile groff
 
-" augroup AUTOCOMP
-" 	autocmd!
-" 	try
-" 		autocmd BufWrite <buffer> :silent! Make!
-" 	catch /.*/
-" 		echo 'busy'
-" 	endtry
-" augroup END
-" let b:autocompile = 1
-
 " vim:foldmethod=marker:foldlevel=0
