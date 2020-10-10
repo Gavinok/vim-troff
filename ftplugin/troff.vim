@@ -57,13 +57,7 @@ if !exists('g:troff_macro_dir')
 	let g:troff_macro_dir='/usr/share/groff/current/tmac'
 endif
 
-" TODO add to documentation
-" TODO: support for mom and other macros <09-10-20 Gavin Jaeger-Freeborn>
-" matchit now supports ms macros
-let b:match_words = '^\.QS:^\.QE,' . '^\.RS:^\.RE,' . '^\.AB:^\.AE,' . '^\.KS:^\.KE,' . '^\.B1:^\.B2,'
-			\. '^\.cstart:^\.cend,'. '^\.EQ:^\.EN,' . '^\.G1:^\.G2,' . '^\.GS:^\.GE,'
-			\. '^\.sqltbl:^\.sqlend,'. '^\.``:^\.``,'
-			\. '^\.IS:^\.IE,' . '^\.PS:^\.PE,' . '^\.R1:^\.R2,' . '^\.TS:^\.TE,. ^\.JS:^\.JE,'
+
 
 " TODO allow for \(.. Formatting
 " this allows for competion of gifs such as \[la] and \[Fn]
@@ -1304,6 +1298,11 @@ let b:surround_84 = ".TS\r.TE"
 
 " TODO: support for mom and other macros <09-10-20 Gavin Jaeger-Freeborn>
 " matchit {{{ "2
+" matchit now supports ms macros
+let b:match_words = '^\.QS:^\.QE,' . '^\.RS:^\.RE,' . '^\.AB:^\.AE,' . '^\.KS:^\.KE,' . '^\.B1:^\.B2,'
+			\. '^\.cstart:^\.cend,'. '^\.EQ:^\.EN,' . '^\.G1:^\.G2,' . '^\.GS:^\.GE,'
+			\. '^\.sqltbl:^\.sqlend,'. '^\.``:^\.``,'
+			\. '^\.IS:^\.IE,' . '^\.PS:^\.PE,' . '^\.R1:^\.R2,' . '^\.TS:^\.TE,. ^\.JS:^\.JE,'
 " 2}}} "matchit
 " 1}}} "plugins
 
