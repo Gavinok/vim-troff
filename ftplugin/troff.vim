@@ -1287,12 +1287,11 @@ endfunction " }}}
 " TODO mention in docs
 " prevent indenting anything
 let b:surround_indent = 1
-let b:surround_102 = "\\f[\1environment: \1]\r\\f[P]"
+let b:surround_102 = "\\f[\1font: \1]\r\\f[P]"
 let b:surround_92 = "\\[\r]"
 let b:surround_69 = ".EQ\r.EN"
-let b:surround_67 = ".CD\r.DE"
-let b:surround_75 = ".KS\r.KE"
-" 1}}} "surround
+let b:surround_80 = ".PS\r.PE"
+let b:surround_84 = ".TS\r.TE"
 
 
 " TODO: Add options for automatic compilation
