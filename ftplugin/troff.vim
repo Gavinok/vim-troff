@@ -1283,8 +1283,8 @@ function! GroffMan() " {{{
 	Man 7 groff
 endfunction " }}}
 
-" surround {{{1 
-" TODO mention in docs
+" plugins {{{ "1
+" surround {{{2
 " prevent indenting anything
 let b:surround_indent = 1
 let b:surround_102 = "\\f[\1font: \1]\r\\f[P]"
@@ -1292,7 +1292,12 @@ let b:surround_92 = "\\[\r]"
 let b:surround_69 = ".EQ\r.EN"
 let b:surround_80 = ".PS\r.PE"
 let b:surround_84 = ".TS\r.TE"
+" 2}}} "surround
 
+" TODO: support for mom and other macros <09-10-20 Gavin Jaeger-Freeborn>
+" matchit {{{ "2
+" 2}}} "matchit
+" 1}}} "plugins
 
 " TODO: Add options for automatic compilation
 " Automatically compile groff
