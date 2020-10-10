@@ -19,8 +19,6 @@ setlocal include=^\\.m\\?so
 " allow for searching for machine macros or strings
 let &l:define = '^\.\(de\|nr\|ds\)\s*'
 
-" common suffixes
-" setlocal suffixesadd+=.ms,.mom,.me,.mm,.tr,.troff,.tmac
 
 " TODO: clean up formatting <09-10-20 Gavin Jaeger-Freeborn>
 " TODO: add pic warnings  <09-10-20 Gavin Jaeger-Freeborn>
