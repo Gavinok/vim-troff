@@ -23,7 +23,7 @@ setlocal include=^\\.m\\?so
 let &l:define = '^\.\(de\|nr\|ds\)\s*'
 
 " common suffixes
-setlocal suffixesadd+=.ms,.mom,.mm,.tr,.tmac,.macros,.mac,
+" setlocal suffixesadd+=.ms,.mom,.me,.mm,.tr,.troff,.tmac
 
 " TODO: clean up formatting <09-10-20 Gavin Jaeger-Freeborn>
 " TODO: add pic warnings  <09-10-20 Gavin Jaeger-Freeborn>
