@@ -9,10 +9,6 @@ scriptencoding utf-8
 " Description:
 " ftplugin for groff files
 
-
-" TODO:  make this an option <09-10-20 Gavin Jaeger-Freeborn>
-setlocal iskeyword=@,-,#,48-57,_,192-255
-
 " allow for sourcing local macro packages
 setlocal include=^\\.m\\?so
 
