@@ -1,3 +1,4 @@
+scriptencoding utf-8
 " File: groff.vim
 " Maintainer: Gavin Jaeger-Freeborn <gavinfreeborn@gmail.com>
 " Created: Fri 14 Feb 2020 09:52:12 AM MST
