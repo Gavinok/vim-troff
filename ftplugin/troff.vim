@@ -1111,9 +1111,9 @@ endfunction
 function! PicComplete(context) " {{{
 	"
 	let object = matchstr(a:context, '^\zs\k\+\ze\s\+$')
-	if object =~ '\(box\|circle\|ellipse\)'
+	if object =~# '\(box\|circle\|ellipse\)'
 		return s:pic_closed_attributes + s:pic_objects_attribute + s:pic_options
-	elseif object =~ '\(arc\|line\|arrow\|spline\)'
+	elseif object =~# '\(arc\|line\|arrow\|spline\)'
 		return s:pic_open_attributes + s:pic_options
 	endif
 	" if a:context =~? '\(^\|^.*;\)$'
@@ -1215,7 +1215,7 @@ fun! GroffOmnifunc(findstart, base) " {{{
 						let s:macros = s:mom_poststart_macros + s:mom_poststart_toggle_macros + s:general_macros + s:base_macros
 					elseif ft ==# 'mom_prestart'
 						let s:macros = s:mom_prestart_macros + s:general_macros + s:base_macros
-					elseif ft == 'ms'
+					elseif ft ==# 'ms'
 						let s:macros = s:ms_macros + s:general_macros + s:base_macros
 					endif
 					let values = s:macros
