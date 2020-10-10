@@ -41,10 +41,20 @@ setlocal errorformat=%o:<standard\ input>\ (%f):%l:%m,
 
 " TODO: allow this to be set and automated <09-10-20 Gavin Jaeger-Freeborn>
 " add tmac files to path
-if isdirectory('/usr/share/groff/current/tmac')
-	setlocal path+=,/usr/share/groff/current/tmac
-	setlocal tags+=/usr/share/groff/current/tmac/.tags
-	setlocal tags+=/usr/share/groff/current/tmac/tags
+
+" TODO: check if this has been set
+" TODO: add support for $GROFF_TMAC_PATH <10-10-20 Gavin Jaeger-Freeborn>
+let g:groff_install_prefix='/usr/share'
+if isdirectory( g:groff_install_prefix . '/groff/current/tmac' )
+	execute 'setlocal path+="' . g:groff_install_prefix . '/groff/current/tmac"'
+	execute 'setlocal tags+="' . g:groff_install_prefix . '/groff/current/tmac/tags"'
+	execute 'setlocal tags+="' . g:groff_install_prefix . '/usr/local/lib/groff/site-tmac/tags"'
+	execute 'setlocal tags+="' . g:groff_install_prefix . '/usr/local/share/groff/site-tmac/tags"'
+endif
+
+" user specified macro directory
+if !exists('g:troff_macro_dir')
+	let g:troff_macro_dir='/usr/share/groff/current/tmac'
 endif
 
 " TODO add to documentation
