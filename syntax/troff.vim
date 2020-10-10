@@ -11,6 +11,15 @@
 " TODO: add better compatibility for older versions of troff <09-10-20 Gavin Jaeger-Freeborn>
 runtime! syntax/groff.vim
 
+" Make this optional
+if !exists('g:groff_greek')
+	let g:groff_greek =1
+elseif !exists('g:groff_math')
+	let g:groff_math =1
+elseif !exists('g:groff_supsub')
+	let g:groff_supsub =1
+endif
+
 " TODO: support for using eqn delimiter <09-10-20 Gavin Jaeger-Freeborn>
 " concealing for eqn equations
 fun! s:GroffConceal(group,pat,cchar)  " {{{

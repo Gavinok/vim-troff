@@ -8,10 +8,6 @@
 " Description:
 " ftplugin for groff files
 
-" Make this optional
-let g:groff_greek =1
-let g:groff_math =1
-let g:groff_supsub =1
 
 " TODO:  make this an option <09-10-20 Gavin Jaeger-Freeborn>
 setlocal iskeyword=@,-,#,48-57,_,192-255
