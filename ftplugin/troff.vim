@@ -21,19 +21,22 @@ setlocal commentstring=\\\"%s
 " TODO: clean up formatting <09-10-20 Gavin Jaeger-Freeborn>
 " TODO: add pic warnings  <09-10-20 Gavin Jaeger-Freeborn>
 " Handle all kinds for tracebacks
-setlocal errorformat=%o:<standard\ input>\ (%f):%l:%m
-setlocal errorformat+=%o:%f:%l:%m
-setlocal errorformat+=%o:\ %f:%l:%m
-setlocal errorformat+=refer:%f:%l:%m                                     " invalid symbol
-setlocal errorformat+=refer:%f:%l:%m                                     " invalid symbol
-setlocal errorformat+=%f:%l:\ macro\ %trror:%m                           " macro errors
-setlocal errorformat+=%f:%l:%m                                           " general errors
-setlocal errorformat+=%W%tarning:\ file\ '%f'\\,\ around\ line\ %l:,%Z%m " warnings
+setlocal errorformat=%o:<standard\ input>\ (%f):%l:%m,
+			\%o:\ <standard\ input>\ (%f):%l:%m,
+			\%o:\ %f:%l:%m,
+			\%o:%f:%l:%m,
+			\%f:%l:\ macro\ %trror:%m,
+			\%f:%l:%m,
+			\%W%tarning:\ file\ '%f'\\,\ around\ line\ %l:,%Z%m
 
-" add comment string for inline use
-setlocal commentstring=\\\"%s
-" let nroff_space_errors = 1
-" imap <buffer> <c-x><c-o> <c-r>=Groffcomplete()<CR>
+" setlocal errorformat=%o:<standard\ input>\ (%f):%l:%m
+" setlocal errorformat+=%o:%f:%l:%m
+" setlocal errorformat+=%o:\ %f:%l:%m
+" setlocal errorformat+=refer:%f:%l:%m                                     " invalid symbol
+" setlocal errorformat+=refer:%f:%l:%m                                     " invalid symbol
+" setlocal errorformat+=%f:%l:\ macro\ %trror:%m                           " macro errors
+" setlocal errorformat+=%f:%l:%m                                           " general errors
+" setlocal errorformat+=%W%tarning:\ file\ '%f'\\,\ around\ line\ %l:,%Z%m " warnings
 
 
 " TODO: allow this to be set and automated <09-10-20 Gavin Jaeger-Freeborn>
