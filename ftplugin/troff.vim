@@ -15,6 +15,8 @@ setlocal include=^\\.m\\?so
 " allow for searching for machine macros or strings
 let &l:define = '^\.\(de\|nr\|ds\)\s*'
 
+" add comment string for inline use
+setlocal commentstring=\\\"%s
 
 " TODO: clean up formatting <09-10-20 Gavin Jaeger-Freeborn>
 " TODO: add pic warnings  <09-10-20 Gavin Jaeger-Freeborn>
