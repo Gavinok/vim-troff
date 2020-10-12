@@ -274,22 +274,25 @@ hi def nroffItalic term=italic               cterm=italic      gui=italic
 
 " Avoids highlighting spelling in macro names
 " NoSpell {{{"
-syn region nroffEscArg start=/'/ end=/'/ contained contains=nroffEscape,@nroffSpecial,@NoSpell
-syn cluster nroffSpecial contains=nroffSpecialChar,nroffSpace,@NoSpell
-syn match nroffReqLeader /^[.']/ contains=@NoSpell	nextgroup=nroffReqName skipwhite
 
-syn region nroffIgnore start=/^[.']\s*ig/ end=/^['.]\s*\./
-syn match nroffReqLeader /[.']/	contains=@NoSpell contained nextgroup=nroffReqName skipwhite
+if !exists("g:troff_nospell_macros") || g:troff_nospell_macros
+	syn region nroffEscArg start=/'/ end=/'/ contained contains=nroffEscape,@nroffSpecial,@NoSpell
+	syn cluster nroffSpecial contains=nroffSpecialChar,nroffSpace,@NoSpell
+	syn match nroffReqLeader /^[.']/ contains=@NoSpell	nextgroup=nroffReqName skipwhite
+
+	syn region nroffIgnore start=/^[.']\s*ig/ end=/^['.]\s*\./
+	syn match nroffReqLeader /[.']/	contains=@NoSpell contained nextgroup=nroffReqName skipwhite
 	syn match nroffReqName /[^\t \\\[?]\+/ contains=@NoSpell contained nextgroup=nroffReqArg
-syn region nroffReqArg start=/\S/ skip=/\\$/ end=/$/ contained contains=nroffEscape,@nroffSpecial,nroffString,nroffError,nroffSpaceError,nroffNumBlock,nroffComment,@NoSpell
-syn match nroffReqName /\(if\|ie\)/ contains=@NoSpell contained nextgroup=nroffCond skipwhite
-syn match nroffReqName /el/ contains=@NoSpell contained nextgroup=nroffReqLeader skipwhite
-syn match nroffReqname /[da]s/  contains=@NoSpell contained nextgroup=nroffDefIdent skipwhite
-syn region nroffDefinition matchgroup=nroffSpecialChar start=/"/ matchgroup=NONE end=/\\"/me=e-2 skip=/\\$/ start=/\S/ end=/$/ contained contains=nroffDefSpecial,@NoSpell
-syn match nroffReqName /\(d[ei]\|am\)/ contains=@NoSpell contained nextgroup=nroffIdent skipwhite
+	syn region nroffReqArg start=/\S/ skip=/\\$/ end=/$/ contained contains=nroffEscape,@nroffSpecial,nroffString,nroffError,nroffSpaceError,nroffNumBlock,nroffComment,@NoSpell
+	syn match nroffReqName /\(if\|ie\)/ contains=@NoSpell contained nextgroup=nroffCond skipwhite
+	syn match nroffReqName /el/ contains=@NoSpell contained nextgroup=nroffReqLeader skipwhite
+	syn match nroffReqname /[da]s/  contains=@NoSpell contained nextgroup=nroffDefIdent skipwhite
+	syn region nroffDefinition matchgroup=nroffSpecialChar start=/"/ matchgroup=NONE end=/\\"/me=e-2 skip=/\\$/ start=/\S/ end=/$/ contained contains=nroffDefSpecial,@NoSpell
+	syn match nroffReqName /\(d[ei]\|am\)/ contains=@NoSpell contained nextgroup=nroffIdent skipwhite
 	syn match nroffReqName /als/ contains=@NoSpell contained nextgroup=nroffIdent skipwhite
-syn match nroffReqName /[rn]r/ contains=@NoSpell contained nextgroup=nroffIdent skipwhite
-syn match nroffReqName /\(rnn\|aln\)/ contains=@NoSpell contained nextgroup=nroffIdent skipwhite
+	syn match nroffReqName /[rn]r/ contains=@NoSpell contained nextgroup=nroffIdent skipwhite
+	syn match nroffReqName /\(rnn\|aln\)/ contains=@NoSpell contained nextgroup=nroffIdent skipwhite
+endif
 " }}} "NoSpell
 
 " Allow for folding of preprocessor sections
@@ -302,4 +305,3 @@ syn region nroffGrap start=/^\.\s*G1\>/ end=/^\.\s*G2\>/ fold
 syn region nroffGremlin start=/^\.\s*GS\>/ end=/^\.\s*GE|GF\>/ fold
 " }}} "preprocessor folding
 " vim:foldmethod=marker:foldlevel=0
-
