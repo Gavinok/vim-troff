@@ -957,47 +957,6 @@ let s:eqn_words = [
 			\]
 " }}}3 "eqn
 
-" you can find more of them at /home/gavinok/groff/doc/pic.pdf
-let s:pic_closed_primitives = [ 'box', 'circle', 'ellipse' ]
-let s:pic_open_primitives = [ 'arc', 'line', 'arrow', 'spline' ]
-let s:pic_closed_attributes = [
-			\'ht',
-			\'height',
-			\'wid',
-			\'width',
-			\'solid',
-			\]
-let s:pic_closed_curve_attributes = [
-			\'rad',
-			\'radius',
-			\'diam',
-			\'diameter',
-			\]
-let s:pic_open_attributes = [
-			\'from',
-			\'to',
-			\'at',
-			\]
-let s:pic_circle_attribute = [ 'diam', 'rad']
-let s:pic_objects_attribute = [ 'colored', 'shaded', 'outlined', 'invis', 'dotted', 'dashed']
-let s:pic_directions = ['down', 'up', 'right', 'left']
-let s:pic_options = [ 'dashed', 'inves', 'at (' ]
-let s:pic_expressions = [
-			\{ 'word': 'sin(', 'info': 'sin(x)' },
-			\{ 'word': 'cos(', 'info': 'cos(x)' },
-			\{ 'word': 'atan2(', 'info': 'atan2(y, x)' },
-			\{ 'word': 'log(x)', 'info': 'log(x) (base 10)' },
-			\{ 'word': 'exp(x)', 'info': 'exp(x) (base 10, i.e. 10^x)' },
-			\{ 'word': 'sqrt(', 'info': 'sqrt(x)' },
-			\{ 'word': 'int(', 'info': 'int(x)' },
-			\{ 'word': 'rand()', 'info': 'rand() (return a random number between 0 and 1)' },
-			\{ 'word': 'rand(', 'info': 'rand(x) (return a random number between 1 and x; deprecated)' },
-			\{ 'word': 'srand(', 'info': 'srand(x) (set the random number seed)' },
-			\{ 'word': 'max(', 'info': 'max(e1, e2)' },
-			\{ 'word': 'min(', 'info': 'min(e1, e2)' },
-			\]
-
-let s:pic = s:pic_closed_primitives + s:pic_open_primitives
 " }}}2 " preprocessor
 
 " }}}1 "Variables (used for omnifunc)
@@ -1110,7 +1069,7 @@ fun! GroffOmnifunc(findstart, base) " {{{
 					if values == [] | unlet values | endif
 				endif
 			elseif synt ==# 'nroffPicture'
-				let values = PicComplete(shortcontext)
+				let values = pic#PicComplete(shortcontext)
 				if shortcontext =~? '\.\s*$'
 					let values = [ { 'word': 'PE', 'icase': 1 } ]
 				elseif shortcontext =~? '\\[$'
