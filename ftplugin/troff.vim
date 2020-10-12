@@ -754,22 +754,6 @@ function! CheckMacros()
 	endif
 endfunction
 
-" TODO: Improve pic completion <09-10-20 Gavin Jaeger-Freeborn>
-" used for completion in pic
-function! PicComplete(context) " {{{
-	"
-	let object = matchstr(a:context, '^\zs\k\+\ze\s\+$')
-	if object =~# '\(box\|circle\|ellipse\)'
-		return s:pic_closed_attributes + s:pic_objects_attribute + s:pic_options
-	elseif object =~# '\(arc\|line\|arrow\|spline\)'
-		return s:pic_open_attributes + s:pic_options
-	endif
-	" if a:context =~? '\(^\|^.*;\)$'
-	return s:pic_open_primitives + s:pic_closed_primitives + s:pic_directions
-	" endif
-	return []
-endfunction " }}}
-
 " Omnifunc for use with groff (currently only supports ms macros)
 fun! GroffOmnifunc(findstart, base) " {{{
 	if a:findstart
