@@ -316,7 +316,7 @@ fun! GroffOmnifunc(findstart, base) " {{{
 				let values = eqn#EqnComplete(shortcontext)
 				if shortcontext =~? '\.\s*$'
 					let values = [ { 'word': 'EN', 'icase': 1 } ]
-				elseif shortcontext =~? '\\[$':w
+				elseif shortcontext =~? '\\[$'
 					let values = groff_char#GroffCompleteGlyph('\\[')
 					if values == [] | unlet values | endif
 				elseif shortcontext =~? '\\($'
