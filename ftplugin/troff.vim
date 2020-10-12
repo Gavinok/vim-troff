@@ -998,8 +998,6 @@ let s:pic_expressions = [
 			\]
 
 let s:pic = s:pic_closed_primitives + s:pic_open_primitives
-let s:tbl = ['allbox', 'box', 'center', 'delim(', 'doublebox', 'expand', 'frame', 'linesize(', ]
-let s:gnu_tbl = [ 'decimapoint(', 'nokeep', 'nospaces', 'nowarn', 'tab(' ]
 " }}}2 " preprocessor
 
 " }}}1 "Variables (used for omnifunc)
@@ -1096,7 +1094,7 @@ fun! GroffOmnifunc(findstart, base) " {{{
 					if values == [] | unlet values | endif
 				endif
 			elseif synt ==# 'nroffTable'
-				let values = s:tbl
+				let values = tbl#TblComplete(shortcontext)
 				if shortcontext =~? '\.\s*$'
 					let values = [ { 'word': 'TE', 'icase': 1 } ]
 				elseif shortcontext =~# '\\f\([\|(\)$'
