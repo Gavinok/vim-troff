@@ -93,6 +93,8 @@ let s:general_macros = [
 			\, 'abbr': 'PSPIC [image.eps]', 'icase': 1 }
 			\]
 " }}}2 "preprocessor definitions
+
+" TODO: reloctate mom macros to an autoload function <12-10-20 Gavin Jaeger-Freeborn>
 " mom {{{2
 let s:mom_prestart_macros = [
 			\{ 'word': 'TITLE "', 'info': 'TITLE [COVER | DOC_COVER] "<title string>" ["<2nd line>" ["<3rd line>" ... ] ]', 'icase': 1 },
@@ -176,6 +178,7 @@ let s:mom_poststart_toggle_macros = [
 			\]
 " }}}2 "mom
 
+" TODO: reloctate ms macros to an autoload <12-10-20 Gavin Jaeger-Freeborn>
 " ms {{{ "2
 let s:ms_macros = [
 			\{ 'word': 'NH', 'icase': 1 },
@@ -200,7 +203,16 @@ let s:ms_macros = [
 			\{ 'word': 'B1', 'icase': 1 },
 			\{ 'word': 'B2', 'icase': 1 }
 			\]
+" ms registers {{{ "3
+let s:registers = [
+			\{ 'word': 'PS', 'icase': 1 },
+			\{ 'word': 'VS', 'icase': 1 },
+			\{ 'word': 'PSINCR', 'icase': 1 },
+			\{ 'word': 'GROWPS', 'icase': 1 }
+			\]
+" }}}3 "ms registers
 " }}}2 "ms
+
 " font {{{ "2
 let s:font = [
 			\{ 'word': 'B', 'icase': 1 },
@@ -227,14 +239,6 @@ let s:escapes = [
 			\]
 " }}}2 "escapes
 
-" ms registers {{{ "2
-let s:registers = [
-			\{ 'word': 'PS', 'icase': 1 },
-			\{ 'word': 'VS', 'icase': 1 },
-			\{ 'word': 'PSINCR', 'icase': 1 },
-			\{ 'word': 'GROWPS', 'icase': 1 }
-			\]
-" }}}2 "ms registers
 " strings need work
 let s:strings = ['ce']
 
@@ -425,6 +429,7 @@ function! GroffMan() " {{{
 		endif
 	endfor
 
+	" TODO: add macro documentation <12-10-20 Gavin Jaeger-Freeborn>
 	" let macro = CheckMacros()
 	Man 7 groff
 endfunction " }}}
