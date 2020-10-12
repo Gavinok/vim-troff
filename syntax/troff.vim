@@ -265,8 +265,8 @@ hi def link roffMath Special
 
 " TODO: add support for underlining <10-10-20 Gavin Jaeger-Freeborn>
 " turn bolded text bold and italic text italic {{{
-syn region nroffBold matchgroup=Delimiter start="\\fB\|\\f\[B\]" end="\\fP\|\\f\[P\?\]\|\\f\[R\]\|\\fR" keepend  concealends
-syn region nroffItalic matchgroup=Delimiter start="\\fI\|\\f\[I\]" end="\\fP\|\\f\[P\?\]\|\\f\[R\]\|\\fR" keepend  concealends
+syn region nroffBold matchgroup=Delimiter start="\\fB\|\\f\[B\]" end="\\fP\|\\f\[P\?\]\|\\f\[R\]\|\\fR" contains=@Spell keepend  concealends
+syn region nroffItalic matchgroup=Delimiter start="\\fI\|\\f\[I\]" end="\\fP\|\\f\[P\?\]\|\\f\[R\]\|\\fR" contains=@Spell keepend  concealends
 
 hi def nroffBold   term=bold                 cterm=bold        gui=bold
 hi def nroffItalic term=italic               cterm=italic      gui=italic
