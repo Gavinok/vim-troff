@@ -1089,8 +1089,11 @@ fun! GroffOmnifunc(findstart, base) " {{{
 				let values = s:eqn_words + s:eqn_letters + s:eqn_marks
 				if shortcontext =~? '\.\s*$'
 					let values = [ { 'word': 'EN', 'icase': 1 } ]
-				elseif shortcontext =~? '\\[$'
-					let values = GroffcompleteCandidates()
+				elseif shortcontext =~? '\\[$':w
+					let values = groff_char#GroffCompleteGlyph('\\[')
+					if values == [] | unlet values | endif
+				elseif shortcontext =~? '\\($'
+					let values = groff_char#GroffCompleteGlyph('\\(')
 					if values == [] | unlet values | endif
 				endif
 			elseif synt ==# 'nroffTable'
@@ -1100,7 +1103,10 @@ fun! GroffOmnifunc(findstart, base) " {{{
 				elseif shortcontext =~# '\\f\([\|(\)$'
 					let values = s:font
 				elseif shortcontext =~? '\\[$'
-					let values = GroffcompleteCandidates()
+					let values = groff_char#GroffCompleteGlyph('\\[')
+					if values == [] | unlet values | endif
+				elseif shortcontext =~? '\\($'
+					let values = groff_char#GroffCompleteGlyph('\\(')
 					if values == [] | unlet values | endif
 				endif
 			elseif synt ==# 'nroffPicture'
@@ -1108,7 +1114,10 @@ fun! GroffOmnifunc(findstart, base) " {{{
 				if shortcontext =~? '\.\s*$'
 					let values = [ { 'word': 'PE', 'icase': 1 } ]
 				elseif shortcontext =~? '\\[$'
-					let values = GroffcompleteCandidates()
+					let values = groff_char#GroffCompleteGlyph('\\[')
+					if values == [] | unlet values | endif
+				elseif shortcontext =~? '\\($'
+					let values = groff_char#GroffCompleteGlyph('\\(')
 					if values == [] | unlet values | endif
 				endif
 				if values == [] | unlet values | endif
@@ -1136,7 +1145,10 @@ fun! GroffOmnifunc(findstart, base) " {{{
 			elseif shortcontext =~# '\\f\([\|(\)$'
 				let values = s:font
 			elseif shortcontext =~? '\\[$'
-				let values = GroffcompleteCandidates()
+				let values = groff_char#GroffCompleteGlyph('\\[')
+				if values == [] | unlet values | endif
+			elseif shortcontext =~? '\\($'
+				let values = groff_char#GroffCompleteGlyph('\\(')
 				if values == [] | unlet values | endif
 			elseif shortcontext =~# '^\.\s*nr\s\+$'
 				let values = s:registers
