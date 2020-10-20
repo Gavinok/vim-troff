@@ -1,4 +1,4 @@
-" File: groff.vim
+" File: troff.vim
 " Maintainer: Gavin Jaeger-Freeborn <gavinfreeborn@gmail.com>
 " Created: Wed 22 Apr 2020 06:41:12 PM
 " License:
@@ -6,18 +6,18 @@
 " See :help license
 "
 " Description: 
-" extended syntax support for groff
+" extended syntax support for troff
 
 " TODO: add better compatibility for older versions of troff <09-10-20 Gavin Jaeger-Freeborn>
 runtime! syntax/groff.vim
 
 " Make this optional
-if !exists('g:groff_greek')
-	let g:groff_greek =1
-elseif !exists('g:groff_math')
-	let g:groff_math =1
-elseif !exists('g:groff_supsub')
-	let g:groff_supsub =1
+if !exists('g:troff_greek')
+	let g:troff_greek =1
+elseif !exists('g:troff_math')
+	let g:troff_math =1
+elseif !exists('g:troff_supsub')
+	let g:troff_supsub =1
 endif
 
 " TODO: support for using eqn delimiter <09-10-20 Gavin Jaeger-Freeborn>
@@ -26,7 +26,7 @@ fun! s:TroffConceal(group,pat,cchar)  " {{{
 	exe 'syn match '.a:group." '".a:pat."' contained conceal cchar=".a:cchar
 endfun
 
-if exists('g:groff_greek')
+if exists('g:troff_greek')
 	call s:TroffConceal('roffGreek'  ,'\<alpha\>'		      ,'α')
 	call s:TroffConceal('roffGreek'  ,'\<beta\>'		      ,'β')
 	call s:TroffConceal('roffGreek'  ,'\<gamma\>'		      ,'γ')
@@ -70,7 +70,7 @@ if exists('g:groff_greek')
 	call s:TroffConceal('roffGreek'  ,'\<OMEGA\>'		      ,'Ω')
 endif 
 
-if exists('g:groff_math')
+if exists('g:troff_math')
 	call s:TroffConceal('roffMath'   , '>= '		          , '≥')
 	call s:TroffConceal('roffMath'   , '<= '		          , '≤')
 	call s:TroffConceal('roffMath'   , '== '		          , '≡')
@@ -92,7 +92,7 @@ if exists('g:groff_math')
 	call s:TroffConceal('roffMath'   , '\<over\>' 		      , '/')
 endif
 
-if exists('g:groff_supsub')
+if exists('g:troff_supsub')
 	fun! s:SuperSub(group,leader,pat,cchar)
 		"     call Decho("SuperSub: group<".a:group."> leader<".a:leader."> pat<".a:pat."> cchar<".a:cchar.">")
 		exe 'syn match '.a:group." '".a:leader.a:pat."' contained conceal cchar=".a:cchar
@@ -261,7 +261,7 @@ if exists('g:groff_supsub')
 	delfun s:SuperSub
 endif
 hi def link roffMath Special
-" }}} "groff conceal
+" }}} "troff conceal
 
 " TODO: add support for underlining <10-10-20 Gavin Jaeger-Freeborn>
 " turn bolded text bold and italic text italic {{{

@@ -80,11 +80,79 @@ more then 2 character macros and commands.
 vim-troff adds concealing similar to how |tex-conceal| works. To disable
 eqn concealing set
 >
-    let g:groff_greek  = 0
-    let g:groff_math   = 0
-    let g:groff_subsup = 0
+    let g:troff_greek  = 0
+    let g:troff_math   = 0
+    let g:troff_subsup = 0
 <
-COMPATIBILITY	                               *troff-compatibly*
+
+SETTINGS										*troff-settings*
+
+Use the following settings to customize vim-trofff to your liking.
+
+Available options: ~
+
+    |g:groff_install_prefix|
+    |g:troff_greek|
+    |g:troff_math|
+    |g:troff_subsup|
+    |g:troff_macro_dir|
+    |g:troff_text_obj_enabled|
+    |g:troff_nospell_macros|
+
+------------------------------------------------------------------------------
+												*g:groff_install_prefix*
+Default:
+	let g:groff_install_prefix='/usr/share'~
+
+This sets the prefix that vim-troff uses to look for macros to add to your
+'path'
+												*g:troff_greek*
+Default:
+	let g:troff_greek = 1~
+
+Enables |conceal| of greek letters in eqn
+
+												*g:troff_subsup*
+Default:
+	let g:troff_subsup = 1~
+
+Enables |conceal| of subscripts and superscripts in eqn letters in eqn
+
+												*g:troff_math*
+Default:
+	let g:troff_math = 1~
+
+Enables |conceal| of math symbols such as `prod` is shown as ∏ and
+superscripts in eqn letters in eqn
+
+												*g:troff_macro_dir*
+Default:
+	let g:troff_macro_dir='/usr/share/groff/current/tmac'~
+
+Used for storing additional troff mactro directories superscripts in eqn
+letters in eqn
+
+												*g:troff_text_obj_enabled*
+Default:
+	let g:troff_text_obj_enabled = 1~
+
+set to 0 to disable support for troff |text-objects|
+
+												*g:troff_nospell_macros*
+Default:
+	let g:troff_nospell_macros = 1~
+
+avoids spellchecking macros and troff requests.
+eg
+>
+ .NH
+ hllo world
+<
+if 'spell' and |g:troff_nospell_macros| are enabled then only `hllo`
+will be highlighted. if |g:troff_nospell_macros| is disabled then `.NH` will
+also be highlighted.
+
+COMPATIBILITY									*troff-compatibly*
 
 Currently vim-troff is focused on supporting groff and will slowly add
 compatibility for alternative troff implementations.
