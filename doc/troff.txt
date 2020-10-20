@@ -157,12 +157,12 @@ COMPATIBILITY									*troff-compatibly*
 Currently vim-troff is focused on supporting groff and will slowly add
 compatibility for alternative troff implementations.
 
-                                                *troff-plugin-compatibility*
-                                                *troff-matchit*
+                                               *troff-plugin-compatibility*
+                                               *troff-matchit*
 Additional settings are added to |matchit| to add support for jumping between
 certain macros and the start and end of a preprocessor. 
 
-                                                *troff-surround*
+                                               *troff-surround*
 vim-troff also adds support for tpope's surround plugin using E for eqn, T for
 tbl, P for pic, f for font, and \ as \[].
 
