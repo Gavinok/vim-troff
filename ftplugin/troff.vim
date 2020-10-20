@@ -467,4 +467,64 @@ let b:match_words = '^\.QS:^\.QE,' . '^\.RS:^\.RE,' . '^\.AB:^\.AE,' . '^\.KS:^\
 " TODO: Add options for automatic compilation
 " Automatically compile groff
 
+function! s:textobj_cancel()
+	if v:operator ==# 'c'
+			execute 'normal! u'
+	endif
+endfunction
+
+" Escape Sequence Text-Objects {{{ "
+function! InsideEscapeSequence(escapetype)
+	call search('\C\(.\|\n^\)\(\\\)\@<!\\' . a:escapetype . '\((..\|\[.\{-}]\|.\)', 'cW')
+	normal! v
+	" consider making an if for not being on this line
+	call search('\C\(\\\)\@<!\\' . a:escapetype . '\((..\|\[.\{-}]\|.\)\(.\|$\n\)', 'becW')
+endfunction
+
+function! AroundEscapeSequence(escapetype)
+	call search('\C\(\\\)\@<!\\' . a:escapetype . '\((..\|\[.\{-}]\|.\)', 'ecW')
+
+	normal! v
+	" consider making an if for not being on this line
+	call search('\C\(\\\)\@<!\\' . a:escapetype . '\((..\|\[.\{-}]\|.\)\(.\|$\)', 'bW')
+	call search('\C\(\\\)\@<!\\' . a:escapetype . '\((..\|\[.\{-}]\|.\)\(.\|$\)', 'bW')
+endfunction
+
+
+" If people are interested in \s±N  \s(±N \s±(N ill add it
+" at the moment i am not sure of the best way to do this without overlapping
+" with is mapping ( inside sentence ) which is useful in troff
+
+" I am also considering adding support for \* escapes for strings if users are
+" interested.
+
+" TODO:  add support for non escaped changes like .ft <20-10-20 Gavin Jaeger-Freeborn>
+let g:troff_text_obj_enabled = 1
+if g:troff_text_obj_enabled
+	" change inside/around font
+	xmap if :<C-u>call InsideEscapeSequence('f')<CR>
+	omap if :normal! vif<CR>
+	xmap af :<C-u>call AroundEscapeSequence('f')<CR>
+	omap af :normal! vaf<CR>
+
+	" change inside/around font
+	xmap iF :<C-u>call InsideEscapeSequence('F')<CR>
+	omap iF :normal! viF<CR>
+	xmap aF :<C-u>call AroundEscapeSequence('F')<CR>
+	omap aF :normal! vaF<CR>
+
+	" change inside/around color
+	xmap im :<C-u>call InsideEscapeSequence('m')<CR>
+	omap im :normal! vim<CR>
+	xmap am :<C-u>call AroundEscapeSequence('m')<CR>
+	omap am :normal! vam<CR>
+
+	" change inside/around drawing color
+	xmap iM :<C-u>call InsideEscapeSequence('M')<CR>
+	omap iM :normal! vim<CR>
+	xmap aM :<C-u>call AroundEscapeSequence('M')<CR>
+	omap aM :normal! vaM<CR>
+endif
+" }}} Escape Sequence Text-Objects "
+
 " vim:foldmethod=marker:foldlevel=0
