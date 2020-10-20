@@ -8,8 +8,7 @@ This plugin is only available if 'compatible' is not set.
 INTRODUCTION 									*troff-introduction* *troff*
 
 Whenever you edit a file with the extension .ms,.mom,.me,.mm,.tr,.troff,.tmac,
-this plugin will be automatically activated. Check |troff-custom-extension|
-for details on setting a custom extension.
+this plugin will be automatically activated.
 
 NAVIGATION										*troff-navigation*
 
