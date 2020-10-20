@@ -1,5 +1,5 @@
 scriptencoding utf-8
-" File: groff.vim
+" File: troff.vim
 " Maintainer: Gavin Jaeger-Freeborn <gavinfreeborn@gmail.com>
 " Created: Fri 14 Feb 2020 09:52:12 AM MST
 " License:
@@ -7,7 +7,16 @@ scriptencoding utf-8
 " See :help license
 "
 " Description:
-" ftplugin for groff files
+" ftplugin for troff files
+
+if !get(g:, 'troff_enabled', 1)
+	finish
+endif
+
+if exists('b:did_ftplugin')
+	finish
+endif
+let b:did_ftplugin = 1
 
 " allow for sourcing local macro packages
 setlocal include=^\\.m\\?so
