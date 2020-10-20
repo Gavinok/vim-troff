@@ -13,8 +13,8 @@ this plugin will be automatically activated.
 NAVIGATION										*troff-navigation*
 
 Navigating between macro files and troff files can often be tricky so be sure
-to add your macro directory to your |path|. By default
-/usr/share/groff/current/tmac is appended to |path| but you can set your own
+to add your macro directory to your 'path'. By default
+/usr/share/groff/current/tmac is appended to 'path' but you can set your own
 macro directory 
 
 												*g:troff-macro-dir*
