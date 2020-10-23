@@ -18,6 +18,10 @@ if exists('b:did_ftplugin')
 endif
 let b:did_ftplugin = 1
 
+if !exists('g:troff_text_obj_enabled')
+	g:troff_text_obj_enabled = 1
+endif
+
 " allow for sourcing local macro packages
 setlocal include=^\\.m\\?so
 
@@ -499,7 +503,6 @@ endfunction
 " interested.
 
 " TODO:  add support for non escaped changes like .ft <20-10-20 Gavin Jaeger-Freeborn>
-let g:troff_text_obj_enabled = 1
 if g:troff_text_obj_enabled
 	" change inside/around font
 	xmap if :<C-u>call InsideEscapeSequence('f')<CR>
