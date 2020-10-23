@@ -55,10 +55,10 @@ setlocal errorformat=%o:<standard\ input>\ (%f):%l:%m,
 " TODO: add support for $GROFF_TMAC_PATH <10-10-20 Gavin Jaeger-Freeborn>
 let g:groff_install_prefix='/usr/share'
 if isdirectory( g:groff_install_prefix . '/groff/current/tmac' )
-	execute 'setlocal path+="' . g:groff_install_prefix . '/groff/current/tmac"'
-	execute 'setlocal tags+="' . g:groff_install_prefix . '/groff/current/tmac/tags"'
-	execute 'setlocal tags+="' . g:groff_install_prefix . '/usr/local/lib/groff/site-tmac/tags"'
-	execute 'setlocal tags+="' . g:groff_install_prefix . '/usr/local/share/groff/site-tmac/tags"'
+	execute 'setlocal path+=' . g:groff_install_prefix . '/groff/current/tmac'
+	execute 'setlocal tags+=' . g:groff_install_prefix . '/groff/current/tmac/tags'
+	execute 'setlocal tags+=' . g:groff_install_prefix . '/usr/local/lib/groff/site-tmac/tags'
+	execute 'setlocal tags+=' . g:groff_install_prefix . '/usr/local/share/groff/site-tmac/tags'
 endif
 
 " user specified macro directory
@@ -503,21 +503,21 @@ let g:troff_text_obj_enabled = 1
 if g:troff_text_obj_enabled
 	" change inside/around font
 	xmap if :<C-u>call InsideEscapeSequence('f')<CR>
-	omap if :normal! vif<CR>
+	omap if :normal vif<CR>
 	xmap af :<C-u>call AroundEscapeSequence('f')<CR>
-	omap af :normal! vaf<CR>
+	omap af :normal vaf<CR>
 
 	" change inside/around font
 	xmap iF :<C-u>call InsideEscapeSequence('F')<CR>
-	omap iF :normal! viF<CR>
+	omap iF :normal viF<CR>
 	xmap aF :<C-u>call AroundEscapeSequence('F')<CR>
-	omap aF :normal! vaF<CR>
+	omap aF :normal vaF<CR>
 
 	" change inside/around color
 	xmap im :<C-u>call InsideEscapeSequence('m')<CR>
-	omap im :normal! vim<CR>
+	omap im :normal vim<CR>
 	xmap am :<C-u>call AroundEscapeSequence('m')<CR>
-	omap am :normal! vam<CR>
+	omap am :normal vam<CR>
 
 	" change inside/around drawing color
 	xmap iM :<C-u>call InsideEscapeSequence('M')<CR>
