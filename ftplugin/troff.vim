@@ -19,7 +19,7 @@ endif
 let b:did_ftplugin = 1
 
 if !exists('g:troff_text_obj_enabled')
-	g:troff_text_obj_enabled = 1
+	let g:troff_text_obj_enabled = 1
 endif
 
 " allow for sourcing local macro packages
