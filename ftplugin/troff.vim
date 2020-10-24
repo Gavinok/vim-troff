@@ -9,10 +9,6 @@ scriptencoding utf-8
 " Description:
 " ftplugin for troff files
 
-if !get(g:, 'troff_enabled', 1)
-	finish
-endif
-
 if exists('b:did_ftplugin')
 	finish
 endif
@@ -20,6 +16,15 @@ let b:did_ftplugin = 1
 
 if !exists('g:troff_text_obj_enabled')
 	let g:troff_text_obj_enabled = 1
+endif
+
+if !exists('g:groff_install_prefix')
+	let g:groff_install_prefix='/usr/share'
+endif
+
+" user specified macro directory
+if !exists('g:troff_macro_dir')
+	let g:troff_macro_dir='/usr/share/groff/current/tmac'
 endif
 
 " allow for sourcing local macro packages
@@ -57,21 +62,12 @@ setlocal errorformat=%o:<standard\ input>\ (%f):%l:%m,
 
 " TODO: check if this has been set
 " TODO: add support for $GROFF_TMAC_PATH <10-10-20 Gavin Jaeger-Freeborn>
-let g:groff_install_prefix='/usr/share'
 if isdirectory( g:groff_install_prefix . '/groff/current/tmac' )
 	execute 'setlocal path+=' . g:groff_install_prefix . '/groff/current/tmac'
 	execute 'setlocal tags+=' . g:groff_install_prefix . '/groff/current/tmac/tags'
 	execute 'setlocal tags+=' . g:groff_install_prefix . '/usr/local/lib/groff/site-tmac/tags'
 	execute 'setlocal tags+=' . g:groff_install_prefix . '/usr/local/share/groff/site-tmac/tags'
 endif
-
-" user specified macro directory
-if !exists('g:troff_macro_dir')
-	let g:troff_macro_dir='/usr/share/groff/current/tmac'
-endif
-
-
-
 
 " TODO: Don't use groff functions for non groff requests <09-10-20 Gavin Jaeger-Freeborn>
 " uses base macros to provide documentation
