@@ -14,9 +14,11 @@ runtime! syntax/groff.vim
 " Make this optional
 if !exists('g:troff_greek')
 	let g:troff_greek =1
-elseif !exists('g:troff_math')
+endif
+if !exists('g:troff_math')
 	let g:troff_math =1
-elseif !exists('g:troff_supsub')
+endif
+if !exists('g:troff_supsub')
 	let g:troff_supsub =1
 endif
 
