@@ -71,14 +71,14 @@ if exists('g:troff_greek')
 endif 
 
 if exists('g:troff_math')
-	call s:TroffConceal('roffMath'   , '>= '		          , '≥')
-	call s:TroffConceal('roffMath'   , '<= '		          , '≤')
-	call s:TroffConceal('roffMath'   , '== '		          , '≡')
-	call s:TroffConceal('roffMath'   , '!= '		          , '≠')
+	call s:TroffConceal('roffMath'   , '>= '		          , '≥ ')
+	call s:TroffConceal('roffMath'   , '<= '		          , '≤ ')
+	call s:TroffConceal('roffMath'   , '== '		          , '≡ ')
+	call s:TroffConceal('roffMath'   , '!= '		          , '≠ ')
 	call s:TroffConceal('roffMath'   , '\<int\>'		      , '∫')
 	call s:TroffConceal('roffMath'   , '\<inf\>'		      , '∞')
-	call s:TroffConceal('roffMath'   , '\<leftarrow\>'	      , '←')
-	call s:TroffConceal('roffMath'   , '\<rightarrow\>'	      , '→')
+	call s:TroffConceal('roffMath'   , '<-'	   	              , '←')
+	call s:TroffConceal('roffMath'   , '->'	   	              , '→')
 	call s:TroffConceal('roffMath'   , '\<partial\>'	      , '∂')
 	call s:TroffConceal('roffMath'   , '\<prime \>'		      , '′')
 	call s:TroffConceal('roffMath'   , '\<times\>'		      , '×')
@@ -298,6 +298,10 @@ endif
 " Allow for folding of preprocessor sections
 " preprocessor folding {{{"
 syn region nroffEquation start=/^\.\s*EQ\>/ end=/^\.\s*EN\>/ contains=roffGreek,roffMath,roffSuperscript,roffSubscript fold
+
+if exists('g:troff_eqndelim')
+	exec 'syn region nroffEquationDel matchgroup=Delimiter start="' . troff_eqndelim[0] .'"  matchgroup=Delimiter	end="' . troff_eqndelim[1] . '"  contains=roffGreek,roffMath,roffSuperscript,roffSubscript concealends '
+endif
 syn region nroffTable start=/^\.\s*TS\>/ end=/^\.\s*TE\>/ fold
 syn region nroffPicture start=/^\.\s*PS\>/ end=/^\.\s*PE\>/ fold
 syn region nroffRefer start=/^\.\s*\[\>/ end=/^\.\s*\]\>/ fold

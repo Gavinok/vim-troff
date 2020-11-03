@@ -84,6 +84,8 @@ eqn concealing set
     let g:troff_math   = 0
     let g:troff_subsup = 0
 <
+If you want to use a delimiter for inline eqn set |g:troff_eqndelim| to
+your desired delimiter.
 
 SETTINGS										*troff-settings*
 
@@ -95,6 +97,7 @@ Available options: ~
     |g:troff_greek|
     |g:troff_math|
     |g:troff_subsup|
+    |g:troff_eqndelim|
     |g:troff_macro_dir|
     |g:troff_text_obj_enabled|
     |g:troff_nospell_macros|
@@ -122,8 +125,20 @@ Enables |conceal| of subscripts and superscripts in eqn letters in eqn
 Default:
 	let g:troff_math = 1~
 
-Enables |conceal| of math symbols such as `prod` is shown as ∏ and
+Enables |conceal| of math symbols such as `prod` is shown as `∏` and
 superscripts in eqn letters in eqn
+
+												*g:troff_eqndelim*
+Default:
+	By default g:troff_eqndelim is not set
+
+Example:
+	let g:troff_eqndelim = '@#'~
+
+Enables |conceal| of math symbols between a delimiter in this example
+`@prod#` is shown as `∏` if |g:troff_math| is enabled.
+
+    NOTE: This does not follow `delim off`
 
 												*g:troff_macro_dir*
 Default:
