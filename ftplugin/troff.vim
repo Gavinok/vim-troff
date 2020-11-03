@@ -458,8 +458,11 @@ let b:surround_84 = ".TS\r.TE"
 " matchit {{{ "2
 " matchit now supports ms macros
 let b:match_words = '^\.QS:^\.QE,' . '^\.RS:^\.RE,' . '^\.AB:^\.AE,' . '^\.KS:^\.KE,' . '^\.B1:^\.B2,'
-			\. '^\.cstart:^\.cend,'. '^\.EQ:^\.EN,' . '^\.G1:^\.G2,' . '^\.GS:^\.GE,'
-			\. '^\.sqltbl:^\.sqlend,'. '^\.``:^\.``,'
+			\. '^\.cstart:^\.cend,' "chem
+			\. '^\.EQ:^\.EN,' . 'left:right,' "eqn
+			\. '^\.G1:^\.G2,' . '^\.GS:^\.GE,'
+			\. '^\.sqltbl:^\.sqlend,' "sqltbl
+			\. '^\.``:^\.``,' " ghighlight
 			\. '^\.IS:^\.IE,' . '^\.PS:^\.PE,' . '^\.R1:^\.R2,' . '^\.TS:^\.TE,. ^\.JS:^\.JE,'
 " 2}}} "matchit
 " 1}}} "plugins
