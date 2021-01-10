@@ -19,12 +19,12 @@ if !exists('g:troff_text_obj_enabled')
 endif
 
 if !exists('g:groff_install_prefix')
-	let g:groff_install_prefix='/usr/share'
+	let g:groff_install_prefix='/usr/share/groff'
 endif
 
 " user specified macro directory
 if !exists('g:troff_macro_dir')
-	let g:troff_macro_dir='/usr/share/groff/current/tmac'
+	let g:troff_macro_dir=g:groff_install_prefix . '/current/tmac'
 endif
 
 " allow for sourcing local macro packages
@@ -57,17 +57,38 @@ setlocal errorformat=%o:<standard\ input>\ (%f):%l:%m,
 " setlocal errorformat+=%W%tarning:\ file\ '%f'\\,\ around\ line\ %l:,%Z%m " warnings
 
 
+" tags {{{
 " TODO: allow this to be set and automated <09-10-20 Gavin Jaeger-Freeborn>
 " add tmac files to path
+function! s:cachedir()
+	if !exists('g:troff_ctags_file')
+		let usrhome = $HOME
+		let cahome = exists('$XDG_CACHE_HOME') ? $XDG_CACHE_HOME : usrhome.'.cache'
+		let cadir = isdirectory(usrhome.'.vim-troff')
+				\ ? usrhome.'.vim-troff' : cahome.'/vim-troff'
+		call mkdir(cahome.'/vim-troff', 'p')
+		let g:troff_ctags_file = cadir.'/tags'
+	endif
+endfunction
+
+" This function is used to print the command used to create tags for the builtin troff macros
+function! TroffGenTags()
+	call s:cachedir()
+	let ctags_conf = globpath(&runtimepath, '**/*vim-troff/troff.ctags')
+	execute '!ctags -f ' . g:troff_ctags_file . ' --options=' . ctags_conf . ' -R ' . g:troff_macro_dir . '/*'
+endfunction
+
+command! -nargs=0 TroffGenTags call TroffGenTags()
 
 " TODO: check if this has been set
 " TODO: add support for $GROFF_TMAC_PATH <10-10-20 Gavin Jaeger-Freeborn>
 if isdirectory( g:groff_install_prefix . '/groff/current/tmac' )
-	execute 'setlocal path+=' . g:groff_install_prefix . '/groff/current/tmac'
-	execute 'setlocal tags+=' . g:groff_install_prefix . '/groff/current/tmac/tags'
-	execute 'setlocal tags+=' . g:groff_install_prefix . '/usr/local/lib/groff/site-tmac/tags'
-	execute 'setlocal tags+=' . g:groff_install_prefix . '/usr/local/share/groff/site-tmac/tags'
+	execute 'setlocal path+=' . g:groff_install_prefix . '/current/tmac'
+	execute 'setlocal tags+=' . g:troff_ctags_file
+	execute 'setlocal tags+=/usr/local/lib/groff/site-tmac/tags'
+	execute 'setlocal tags+=/usr/local/share/groff/site-tmac/tags'
 endif
+" }}} "tags
 
 " TODO: Don't use groff functions for non groff requests <09-10-20 Gavin Jaeger-Freeborn>
 " uses base macros to provide documentation

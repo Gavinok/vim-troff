@@ -1,0 +1,5 @@
+--langdef=troff
+--map-troff=+.ms
+--map-troff=+.tmac
+--kinddef-troff=t,tag,tags
+--regex-troff=/^\.(de|MAC)[[:blank:]]+([[:alpha:]]+)/\2/t/{scope=ref}

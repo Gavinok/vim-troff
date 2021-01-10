@@ -17,10 +17,10 @@ to add your macro directory to your 'path'. By default
 /usr/share/groff/current/tmac is appended to 'path' but you can set your own
 macro directory 
 
-												*g:troff-macro-dir*
+												*troff-macro-dir*
 
-Comma separated list of directories used for storing macros defaults to
-/usr/share/groff/current/tmac if it exists.
+Directory used for storing macros defaults to /usr/share/groff/current/tmac if
+it exists.
 >
 	let g:troff_macro_dir=/usr/share/groff/current/tmac
 <
@@ -29,7 +29,17 @@ Comma separated list of directories used for storing macros defaults to
 For groff users you can also add your global macros by setting
 |g:groff_install_prefix|
 
-    	                                        *g:troff-include*
+												*troff-tags*
+
+In addition to setting the path |g:troff_macro_dir| is used to generate tags
+for jumping to the definition of a macro. For initial tag generation execute
+>
+	:TroffGenTags
+<
+Once tags have been generated us <C-]> to jump to the definition of the macro.
+The tag file is store at |g:troff_ctags_file|
+
+    	                                        *troff-include*
 
 Settings for both 'include' and 'define' have been set for use with .so and
 .mso so you can use |include-search| and |definition-search| to jump to
@@ -99,6 +109,7 @@ Available options: ~
     |g:troff_subsup|
     |g:troff_eqndelim|
     |g:troff_macro_dir|
+    |g:troff_ctags_file|
     |g:troff_text_obj_enabled|
     |g:troff_nospell_macros|
 
@@ -144,8 +155,16 @@ Enables |conceal| of math symbols between a delimiter in this example
 Default:
 	let g:troff_macro_dir='/usr/share/groff/current/tmac'~
 
-Used for storing additional troff mactro directories superscripts in eqn
-letters in eqn
+Used for storing troff macro directories for adding to path and for tagging
+
+												*g:troff_ctags_file*
+Default:
+	let g:troff_ctags_file=$XDG_CACHE_HOME/vim-troff/tags~
+    or
+	let g:troff_ctags_file=$HOME/.vim-troff/tags~
+    if $XDG_CACHE_HOME does not exist
+
+Used for storing troff macro directories for adding to path and for tagging
 
 												*g:troff_text_obj_enabled*
 Default:
