@@ -59,30 +59,26 @@ setlocal errorformat=%o:<standard\ input>\ (%f):%l:%m,
 
 " tags {{{
 " TODO: allow this to be set and automated <09-10-20 Gavin Jaeger-Freeborn>
-" add tmac files to path
-function! s:cachedir()
-	if !exists('g:troff_ctags_file')
-		let usrhome = $HOME
-		let cahome = exists('$XDG_CACHE_HOME') ? $XDG_CACHE_HOME : usrhome.'.cache'
-		let cadir = isdirectory(usrhome.'.vim-troff')
-				\ ? usrhome.'.vim-troff' : cahome.'/vim-troff'
-		call mkdir(cahome.'/vim-troff', 'p')
-		let g:troff_ctags_file = cadir.'/tags'
-	endif
-endfunction
+if !exists('g:troff_ctags_file')
+	let usrhome = $HOME
+	let cahome = exists('$XDG_CACHE_HOME') ? $XDG_CACHE_HOME : usrhome.'.cache'
+	let cadir = isdirectory(usrhome.'.vim-troff')
+			\ ? usrhome.'.vim-troff' : cahome.'/vim-troff'
+	call mkdir(cahome.'/vim-troff', 'p')
+	let g:troff_ctags_file = cadir.'/tags'
+endif
 
 " This function is used to print the command used to create tags for the builtin troff macros
 function! TroffGenTags()
-	call s:cachedir()
-	let ctags_conf = globpath(&runtimepath, '**/*vim-troff/troff.ctags')
-	execute '!ctags -f ' . g:troff_ctags_file . ' --options=' . ctags_conf . ' -R ' . g:troff_macro_dir . '/*'
+	let ctags_options='--langdef=troff --map-troff=+.ms --map-troff=+.tmac --kinddef-troff=t,tag,tags --regex-troff="/^\.(de|MAC)[[:blank:]]+([[:alpha:]]+)/\2/t/{scope=ref}"' 
+	execute '!ctags -f ' . g:troff_ctags_file . ' ' . ctags_options . '  -R ' . g:troff_macro_dir . '/*'
 endfunction
 
 command! -nargs=0 TroffGenTags call TroffGenTags()
 
 " TODO: check if this has been set
 " TODO: add support for $GROFF_TMAC_PATH <10-10-20 Gavin Jaeger-Freeborn>
-if isdirectory( g:groff_install_prefix . '/groff/current/tmac' )
+if isdirectory( g:groff_install_prefix . '/current/tmac' )
 	execute 'setlocal path+=' . g:groff_install_prefix . '/current/tmac'
 	execute 'setlocal tags+=' . g:troff_ctags_file
 	execute 'setlocal tags+=/usr/local/lib/groff/site-tmac/tags'
