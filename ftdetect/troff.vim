@@ -7,4 +7,4 @@
 "
 " Description: 
 " syntax detection for troff files
-autocmd! BufRead,BufNewFile *.ms,*.mom,*.me,*.mm,*.tr,*.troff,*.tmac setfiletype troff
+autocmd! BufRead,BufNewFile *.ms,*.mom,*.me,*.mm,*.tr,*.troff,*.tmac,tmac.* setfiletype troff
