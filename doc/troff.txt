@@ -83,7 +83,7 @@ SYNTAX											*troff-syntax*
 vim-troff adds multiple additions to the syntax such as spell checking and
 syntax folding for preprocessor sections.
 
-NOTE: currently vim-troff assumes that your groff implementation allows for
+NOTE: currently vim-troff assumes that your troff implementation allows for
 more then 2 character macros and commands.
 
 	                                           *troff-eqn-conceal*
