@@ -276,7 +276,6 @@ hi def nroffItalic term=italic               cterm=italic      gui=italic
 
 " Avoids highlighting spelling in macro names
 " NoSpell {{{"
-syntax spell toplevel
 if !exists("g:troff_nospell_macros") || g:troff_nospell_macros
 	syn region nroffEscArg start=/'/ end=/'/ contained contains=nroffEscape,@nroffSpecial,@NoSpell
 	syn cluster nroffSpecial contains=nroffSpecialChar,nroffSpace,@NoSpell
