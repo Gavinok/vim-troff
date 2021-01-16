@@ -61,7 +61,7 @@ setlocal errorformat=%o:<standard\ input>\ (%f):%l:%m,
 " TODO: allow this to be set and automated <09-10-20 Gavin Jaeger-Freeborn>
 if !exists('g:troff_ctags_file')
 	let usrhome = $HOME
-	let cahome = exists('$XDG_CACHE_HOME') ? $XDG_CACHE_HOME : usrhome.'.cache'
+	let cahome = exists('$XDG_CACHE_HOME') ? $XDG_CACHE_HOME : usrhome.'/.cache'
 	let cadir = isdirectory(usrhome.'.vim-troff')
 			\ ? usrhome.'.vim-troff' : cahome.'/vim-troff'
 	call mkdir(cahome.'/vim-troff', 'p')
