@@ -76,13 +76,9 @@ endfunction
 
 command! -nargs=0 TroffGenTags call TroffGenTags()
 
-" TODO: check if this has been set
-" TODO: add support for $GROFF_TMAC_PATH <10-10-20 Gavin Jaeger-Freeborn>
-if isdirectory( g:groff_install_prefix . '/current/tmac' )
-	execute 'setlocal path+=' . g:groff_install_prefix . '/current/tmac'
+" set ctags after opening troff files
+if !filereadable(g:troff_ctags_file)
 	execute 'setlocal tags+=' . g:troff_ctags_file
-	execute 'setlocal tags+=/usr/local/lib/groff/site-tmac/tags'
-	execute 'setlocal tags+=/usr/local/share/groff/site-tmac/tags'
 endif
 " }}} "tags
 
