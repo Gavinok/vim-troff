@@ -10,14 +10,14 @@ INTRODUCTION 									*troff-introduction* *troff*
 Whenever you edit a file with the extension .ms,.mom,.me,.mm,.tr,.troff,.tmac,
 this plugin will be automatically activated.
 
-NAVIGATION										*troff-navigation*
+NAVIGATION									*troff-navigation*
 
 Navigating between macro files and troff files can often be tricky so be sure
 to add your macro directory to your 'path'. By default
 /usr/share/groff/current/tmac is appended to 'path' but you can set your own
 macro directory 
 
-												*troff-macro-dir*
+										*troff-macro-dir*
 
 Directory used for storing macros defaults to /usr/share/groff/current/tmac if
 it exists.
@@ -29,7 +29,7 @@ it exists.
 For groff users you can also add your global macros by setting
 |g:groff_install_prefix|
 
-												*troff-tags*
+										*troff-tags*
 
 In addition to setting the path |g:troff_macro_dir| is used to generate tags
 for jumping to the definition of a macro. For initial tag generation execute
@@ -39,14 +39,15 @@ for jumping to the definition of a macro. For initial tag generation execute
 Once tags have been generated us <C-]> to jump to the definition of the macro.
 The tag file is store at |g:troff_ctags_file|
 
-    	                                        *troff-include*
+
+										*troff-include*
 
 Settings for both 'include' and 'define' have been set for use with .so and
 .mso so you can use |include-search| and |definition-search| to jump to
 definitions with [<C-D> , [<C-I> , |:djump|,  |:ijump| use completion with
 <C-X><C-D> or <C-X><C-I> and much more.
 
-COMPLETION										*troff-completion*
+COMPLETION									*troff-completion*
 
 vim-troff comes with an 'omnifunc' for somewhat intelligent completion. It
 supports eqn, tbl, and pic, groff requests, and groff glyphs. In addition the
@@ -54,11 +55,11 @@ omnifunc will try to determine the current macros for additional completion.
 by default the omnifunc is enabled. You can activate this completions with
 <C-X><C-O> in insert mode.
 
-TEXTOBJ	                                       *troff-text-objects*
+TEXTOBJ	                                                                        *troff-text-objects*
 
 vim-troff currently supports the following text objects:
 
-                                               *troff-i-text-objects*
+                                                                                *troff-i-text-objects*
 `if`
         between `\f` escape sequences e.g `\f. , \f(.. , and \f[...]`
 `iF`
@@ -68,7 +69,7 @@ vim-troff currently supports the following text objects:
 `iM`
         between `\M` escape sequences e.g `\M. , \M(.. , and \M[...]`
 
-                                            *troff-a-text-objects*
+                                                                                *troff-a-text-objects*
 `af`
         arround `\f` escape sequences e.g `\f. , \f(.. , and \f[...]`
 `aF`
@@ -191,12 +192,12 @@ COMPATIBILITY									*troff-compatibly*
 Currently vim-troff is focused on supporting groff and will slowly add
 compatibility for alternative troff implementations.
 
-                                               *troff-plugin-compatibility*
-                                               *troff-matchit*
+												*troff-plugin-compatibility*
+												*troff-matchit*
 Additional settings are added to |matchit| to add support for jumping between
 certain macros and the start and end of a preprocessor. 
 
-                                               *troff-surround*
+												*troff-surround*
 vim-troff also adds support for tpope's surround plugin using E for eqn, T for
 tbl, P for pic, f for font, and \ as \[].
 
