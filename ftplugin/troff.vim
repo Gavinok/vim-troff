@@ -70,7 +70,7 @@ endif
 
 " This function is used to print the command used to create tags for the builtin troff macros
 function! TroffGenTags()
-	let ctags_options='--langdef=troff --map-troff=+.ms --map-troff=+.tmac --kinddef-troff=t,tag,tags --regex-troff="/^\.(de|MAC)[[:blank:]]+([[:alpha:]]+)/\2/t/{scope=ref}"' 
+	let ctags_options='--langdef=troff --map-troff=+.ms --map-troff=+.tmac --map-troff="(tmac.*)" --kinddef-troff=t,tag,tags --regex-troff="/^\.(de|MAC)[[:blank:]]+(.+)/\2/t/{scope=ref}"' 
 	execute '!ctags -f ' . g:troff_ctags_file . ' ' . ctags_options . '  -R ' . g:troff_macro_dir . '/*'
 endfunction
 
