@@ -52,7 +52,7 @@ let s:pic = s:pic_closed_primitives + s:pic_open_primitives
 
 " TODO: Improve pic completion <09-10-20 Gavin Jaeger-Freeborn>
 " used for completion in pic
-function! pic#PicComplete(context) " {{{
+function! pic#PicComplete(context) abort " {{{
 	"
 	let object = matchstr(a:context, '^\zs\k\+\ze\s\+$')
 	if object =~# '\(box\|circle\|ellipse\)'
