@@ -27,36 +27,6 @@ if !exists('g:troff_macro_dir')
 	let g:troff_macro_dir=g:groff_install_prefix . '/current/tmac'
 endif
 
-" allow for sourcing local macro packages
-setlocal include=^\\.m\\?so
-
-" allow for searching for machine macros or strings
-let &l:define = '^\.\(de\|nr\|ds\)\s*'
-
-" add comment string for inline use
-setlocal commentstring=\\\"%s
-
-" TODO: clean up formatting <09-10-20 Gavin Jaeger-Freeborn>
-" TODO: add pic warnings  <09-10-20 Gavin Jaeger-Freeborn>
-" Handle all kinds for tracebacks
-setlocal errorformat=%o:<standard\ input>\ (%f):%l:%m,
-			\%o:\ <standard\ input>\ (%f):%l:%m,
-			\%o:\ %f:%l:%m,
-			\%o:%f:%l:%m,
-			\%f:%l:\ macro\ %trror:%m,
-			\%f:%l:%m,
-			\%W%tarning:\ file\ '%f'\\,\ around\ line\ %l:,%Z%m
-
-" setlocal errorformat=%o:<standard\ input>\ (%f):%l:%m
-" setlocal errorformat+=%o:%f:%l:%m
-" setlocal errorformat+=%o:\ %f:%l:%m
-" setlocal errorformat+=refer:%f:%l:%m                                     " invalid symbol
-" setlocal errorformat+=refer:%f:%l:%m                                     " invalid symbol
-" setlocal errorformat+=%f:%l:\ macro\ %trror:%m                           " macro errors
-" setlocal errorformat+=%f:%l:%m                                           " general errors
-" setlocal errorformat+=%W%tarning:\ file\ '%f'\\,\ around\ line\ %l:,%Z%m " warnings
-
-
 " tags {{{
 " TODO: allow this to be set and automated <09-10-20 Gavin Jaeger-Freeborn>
 if !exists('g:troff_ctags_file')
@@ -543,5 +513,34 @@ if g:troff_text_obj_enabled
 	omap aM :normal! vaM<CR>
 endif
 " }}} Escape Sequence Text-Objects "
+
+" allow for sourcing local macro packages
+setlocal include=^\\.m\\?so
+
+" allow for searching for machine macros or strings
+let &l:define = '^\.\(de\|nr\|ds\)\s*'
+
+" add comment string for inline use
+setlocal commentstring=\\\"%s
+
+" TODO: clean up formatting <09-10-20 Gavin Jaeger-Freeborn>
+" TODO: add pic warnings  <09-10-20 Gavin Jaeger-Freeborn>
+" Handle all kinds for tracebacks
+setlocal errorformat=%o:<standard\ input>\ (%f):%l:%m,
+			\%o:\ <standard\ input>\ (%f):%l:%m,
+			\%o:\ %f:%l:%m,
+			\%o:%f:%l:%m,
+			\%f:%l:\ macro\ %trror:%m,
+			\%f:%l:%m,
+			\%W%tarning:\ file\ '%f'\\,\ around\ line\ %l:,%Z%m
+
+" setlocal errorformat=%o:<standard\ input>\ (%f):%l:%m
+" setlocal errorformat+=%o:%f:%l:%m
+" setlocal errorformat+=%o:\ %f:%l:%m
+" setlocal errorformat+=refer:%f:%l:%m                                     " invalid symbol
+" setlocal errorformat+=refer:%f:%l:%m                                     " invalid symbol
+" setlocal errorformat+=%f:%l:\ macro\ %trror:%m                           " macro errors
+" setlocal errorformat+=%f:%l:%m                                           " general errors
+" setlocal errorformat+=%W%tarning:\ file\ '%f'\\,\ around\ line\ %l:,%Z%m " warnings
 
 " vim:foldmethod=marker:foldlevel=0
