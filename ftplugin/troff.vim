@@ -18,13 +18,26 @@ if !exists('g:troff_text_obj_enabled')
 	let g:troff_text_obj_enabled = 1
 endif
 
+" TODO maybe add /usr/local/ucblib/doctools/tmac for heirloom users
+" groff paths {{{ "
 if !exists('g:groff_install_prefix')
 	let g:groff_install_prefix='/usr/share/groff'
 endif
+" }}} "groff paths
+" neatroff paths {{{ "
+if !exists('g:neatroff_install_prefix')
+	let g:neatroff_install_prefix='/opt/share/neatroff'
+endif
+" }}} "neatroff paths
 
-" user specified macro directory
+" Macro directories
+" TODO: add support for $GROFF_TMAC_PATH for better support<10-10-20 Gavin Jaeger-Freeborn>
 if !exists('g:troff_macro_dir')
-	let g:troff_macro_dir=g:groff_install_prefix . '/current/tmac'
+	if isdirectory( g:neatroff_install_prefix )
+		let g:troff_macro_dir=g:neatroff_install_prefix . '/tmac'
+	elseif isdirectory( g:groff_install_prefix ) 
+		let g:troff_macro_dir=g:groff_install_prefix . '/current/tmac'
+	endif
 endif
 
 " tags {{{
