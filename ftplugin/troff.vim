@@ -461,6 +461,8 @@ endfunction " }}}
 " prevent indenting anything
 let b:surround_indent = 1
 let b:surround_102 = "\\f[\1font: \1]\r\\f[P]"
+let b:surround_77 = "\\M[\1font: \1]\r\\M[]"
+let b:surround_109 = "\\m[\1font: \1]\r\\m[]"
 let b:surround_92 = "\\[\r]"
 let b:surround_69 = ".EQ\r.EN"
 let b:surround_80 = ".PS\r.PE"
