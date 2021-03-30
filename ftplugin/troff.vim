@@ -77,7 +77,7 @@ endfunction
 command! -nargs=0 TroffGenTags call TroffGenTags()
 
 " set ctags after opening troff files
-if !filereadable(g:troff_ctags_file)
+if filereadable(g:troff_ctags_file)
 	execute 'setlocal tags+=' . g:troff_ctags_file
 endif
 " }}} "tags
